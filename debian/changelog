@@ -1,3 +1,34 @@
+icu (66.1-2ubuntu2.1) focal-security; urgency=medium
+
+  * SECURITY UPDATE: Double Free
+    - debian/patches/CVE-2021-30535-prereq.patch: Fix invalid free when
+      using long locale name in Locale functions in
+      source/common/locid.cpp.
+    - debian/patches/CVE-2021-30535.patch: Fix edge cases with baseName
+      in setKeywordValue function in source/common/locid.cpp to
+      prevent double free and protect from heap corruption.
+    - CVE-2021-30535
+  * Fix failing tests causing build-time failures: (LP: #1951432)
+    - debian/patches/tzdata-2020f-tztest.patch: Add Time Zones data
+      related to tzdata version 2020f in TestCanonicalID function in
+      source/test/intltest/tztest.cpp to prevent tests from failing.
+    - debian/patches/tzdata-2021b-tests.patch: Fix TestCalendar function
+      in source/test/cintltst/ccaltst.c and TestGenericAPI in
+      source/test/intltest/tztest.cpp to accept tz.version with longer
+      string size to prevent tests from failing.
+    - debian/patches/skip-tztests.patch: Skip specific Time Zones tests in
+      TestAliasedNames and TestCanonicalID functions in
+      source/test/intltest/tztest.cpp. They don't match with data from
+      updated tzdata and needed to be skiped to prevent tests from failing.
+  * Fix autopkg tests:
+    - debian/tests/control: add libicu-dev and pkg-config dependencies in
+      smoke test, and build-essential dependency in build-test.
+    - debian/tests/smoke: change smoke test tool from icu-config (deprecated)
+      to pkg-config.
+    - debian/tests/ustring.cpp: add 'using namespace icu'.
+
+ -- Rodrigo Figueiredo Zaiden <rodrigo.zaiden@canonical.com>  Tue, 23 Nov 2021 11:50:52 -0300
+
 icu (66.1-2ubuntu2) focal; urgency=medium
 
   * Build with -O2 on ppc64el again.

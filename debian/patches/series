@@ -6,3 +6,8 @@ layout-test-fix.patch
 flaky-tests.patch
 icu-64.1-data_archive_generation.patch
 CVE-2020-10531.patch
+CVE-2021-30535-prereq.patch
+CVE-2021-30535.patch
+tzdata-2020f-tztest.patch
+tzdata-2021b-tests.patch
+skip-tztests.patch
